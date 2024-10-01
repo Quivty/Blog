@@ -19,7 +19,9 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     document.getElementById('displayName').textContent = name;
     document.getElementById('displayAge').textContent = age;
     document.getElementById('displayColor').textContent = color;
+    
 
     // Show the output section
     document.getElementById('output').style.display = 'block';
+    document.getElementByID('output').style.color = color;
 });
