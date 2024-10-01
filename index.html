@@ -1,35 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Interactive Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-
 <body>
-    <h1>Pseudo blog</h1>
 
-    <main>
-        <form method="POST" name="dodaj">
-            <fieldset>
-                <legend>Nowy artykuł</legend>
-                <label for="title">Dodaj tytuł</label>
-                <input name="title" id="title"><br>
-                <label for="content">Treść artykułu</label>
-                <textarea name="content" id="content" cols="20" rows="10"></textarea><br>
-                <label for="autor">Autor artykułu:</label>
-                <input name="autor" id="autor"><br>
-                <label for="zajawka">Czy jest zajawką?</label>
-                <input type="checkbox" name="zajawka" id="zajawka"><br>
-                <input type="submit"></input><input type="reset"></input>
-            </fieldset>
+<div class="container">
+    <h1>Interactive Web Page</h1>
+    
+    <form id="userForm">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" placeholder="Your name..." required>
 
-        </form>
-    </main>
-    <aside></aside>
-</body>
+        <label for="age">Enter your age:</label>
+        <input type="number" id="age" min="1" max="120" placeholder="Your age..." required>
+
+        <label for="color">Select your favorite color:</label>
+        <select id="color">
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Yellow">Yellow</option>
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="output" class="output" style="display:none;">
+        <p><strong>Name:</strong> <span id="displayName"></span></p>
+        <p><strong>Age:</strong> <span id="displayAge"></span></p>
+        <p><strong>Favorite Color:</strong> <span id="displayColor"></span></p>
+    </div>
+</div>
+
 <script src="script.js"></script>
 
+</body>
 </html>
