@@ -73,9 +73,8 @@ const articles = [{
 
 //     console.log(artykul)
 //   })
-let editingArticleId = null; // Track the ID of the article being edited
+let editingArticleId = null;
 
-// Function to display articles
 function displayArticles() {
     const mainContainer = document.querySelector('main .container');
     const asideContainer = document.querySelector('aside');
@@ -102,17 +101,16 @@ function displayArticles() {
     });
 }
 
-// Function to handle form submission and add or edit an article
 document.querySelector('form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const tytul = document.getElementById('tytulInp').value;
     const tresc = document.getElementById('trescInp').value;
     const autor = document.getElementById('autorInp').value;
-    const czyZaj = document.getElementById('czyZajawka').checked; // Use checked for checkbox
+    const czyZaj = document.getElementById('czyZajawka').checked;
 
     if (editingArticleId) {
-        // Editing existing article
+
         const article = articles.find(a => a.id === editingArticleId);
         if (article) {
             article.title = tytul;
@@ -120,10 +118,10 @@ document.querySelector('form').addEventListener('submit', function(e) {
             article.author = autor;
             article.zajawka = czyZaj;
         }
-        editingArticleId = null; // Reset editing mode
+        editingArticleId = null;
     } else {
-        // Adding new article
-        const uuid = crypto.randomUUID(); // Generate unique ID
+
+        const uuid = crypto.randomUUID();
         const newArticle = {
             id: uuid,
             title: tytul,
@@ -131,36 +129,35 @@ document.querySelector('form').addEventListener('submit', function(e) {
             content: tresc,
             author: autor,
         };
-        articles.push(newArticle); // Add to articles array
+        articles.unshift(newArticle);
     }
 
-    displayArticles(); // Re-render articles
-    document.querySelector('form').reset(); // Reset form
+    displayArticles();
+    document.querySelector('form').reset();
 });
 
-// Function to edit an article
+
 function editArticle(id) {
     const article = articles.find(a => a.id === id);
 
     if (article) {
-        // Populate form with article data
+
         document.getElementById('tytulInp').value = article.title;
         document.getElementById('trescInp').value = article.content;
         document.getElementById('autorInp').value = article.author;
         document.getElementById('czyZajawka').checked = article.zajawka;
 
-        editingArticleId = id; // Set the article to be edited
+        editingArticleId = id;
     }
 }
 
-// Function to delete an article
+
 function deleteArticle(id) {
     const index = articles.findIndex(article => article.id === id);
     if (index !== -1) {
-        articles.splice(index, 1); // Remove article from the array
-        displayArticles(); // Re-render articles
+        articles.splice(index, 1);
+        displayArticles();
     }
 }
 
-// Display articles initially
 displayArticles();
